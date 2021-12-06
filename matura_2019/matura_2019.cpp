@@ -2,10 +2,58 @@
 //
 
 #include <iostream>
+#include <stdlib.h>
+#include <time.h>
+// n%2 == 1
+int wypelnienie_tablicy(int M[], int n)
+{
+	int random = rand() % 100 + 1;
+	for (int i = 0; i < n; i++)
+	{
+		M[i] = random;
+		random = rand() % 100 + 1;
+	}
+
+	std::cout << "[ ";
+	for (int i = 0; i < n; i++)
+	{
+		std::cout << M[i] << ", ";
+	}
+	std::cout << " ]" << std::endl;
+	return *M;
+}
+
+// n%2 == 0
+int sprawdzenie(int M[], int n)
+{
+	for (int i = 0; i < n; i++)
+	{
+		if (M[i] % 2 == 0)
+		{
+			std::cout << "Pierwsza liczba napisana przez Jasia to: " << M[i] << std::endl;
+			break;
+		}
+	}
+	return *M;
+}
 
 int main()
 {
-    
+	srand(time(NULL));
+	int n;
+	std::cout << "Podaj n: ";
+	std::cout << std::endl;
+	std::cin >> n;
+	if (n < 2)
+	{
+		std::cout << "Podaj n, ktore jest wieksze lub rowne 2: ";
+		std::cout << std::endl;
+		std::cin >> n;
+	}
+
+	int* M = new int[n];
+	wypelnienie_tablicy(M, n);
+	sprawdzenie(M, n);
 }
 
 // Run program: Ctrl + F5 or Debug > Start Without Debugging menu
